@@ -1,0 +1,1 @@
+This section describes how to create custom templates and generate artifacts from them by CUBA CLI.
