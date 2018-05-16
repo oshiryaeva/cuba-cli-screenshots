@@ -19,13 +19,19 @@ CUBA CLI is a tool for CUBA Platform projects scaffolding. CLI can work in two m
 * **Database** – the sql database to use. Choose `HSQLDB`.
 4. Empty project will be created in the current directory.
 5. Close CLI or open new terminal window. Run `./gradlew assemble`
-6. Start db - HOW?
-7. Run `./gradlew setupTomcat deploy start`
-8. In your browser go to http://localhost:8080/app
+6. Run `./gradlew startDb` to start local HyperSQL server.
+7. Run `./gradlew createDb` to create database.
+8. Run `./gradlew setupTomcat deploy start`.
+9. In your browser go to http://localhost:8080/app
 
 The username and password are admin / admin.
 
-### 3. Importing project in IDE
+### 3. Importing project into IDE
+
+1. Open IntelliJ IDEA
+2. File -> Open, navigate to project directory, choose `build.gradle`, press `OK`.
+3. In gradle settings choose `Use gradle 'wrapper' task configuration`.
+4. Press `OK`.
 
 ### 4. Creating entities
 
@@ -35,6 +41,41 @@ The username and password are admin / admin.
 * **Entity name** – entity class name. Enter `Customer`.
 * **Package name** – entity class package name. Accept default.
 * **Entity type** – entity may be Persistent, Persistent embedded or Not Persistent. Choose Persistent, to make entity able to be saved in database.
+5. Let's add some fields. Open created class in your IDE.
+Add following field and methods:
+```java
+@Column(name = "NAME")
+protected String name;
 
+public void setName(String name) {
+    this.name = name;
+}
 
+public String getName() {
+    return name;
+}
+```
+6. Now let's add sql scripts for create entity table.
+Create file `modules/core/db/init/hsql/10.create-db.sql` with content
+```sql
+-- begin SALES_CUSTOMER
+create table SALES_CUSTOMER (
+    ID varchar(36) not null,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    NAME varchar(255),
+    --
+    primary key (ID)
+)^
+-- end SALES_CUSTOMER
+```
+Also create file with name `modules/core/db/update/hsql/{yy}/{yymmdd}-createCustomer.sql` with the same content.
+You can read more about create and update scripts on [official documentation](https://doc.cuba-platform.com/manual-6.9/db_scripts.html).
 
+7. Run `./gradlew updateDb` to create table for `Customer` entity.
