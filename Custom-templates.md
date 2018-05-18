@@ -34,7 +34,7 @@ Basically, template.xml has following structure:
     <quesitons>
         <!-- Questions block. All answers will be stored to the CliContext and will be available to 
              Apache Velocity by ${modelName.questionName}.-->
-        <plain name="entityName" caption="Entity Name"/>
+        <plain name="name" caption="Entity Name"/>
         <plain name="packageName" caption="Package Name"/>
         <options name="entityType" caption="Entity type">
             <option>Persistent</option>
@@ -56,3 +56,14 @@ Basically, template.xml has following structure:
     </operations>
 </template>
 ```
+
+### 3. Template example
+
+Lets create out own template.
+For brevity, simply copy content of `cuba-cli/src/main/resources/com/haulmont/cuba/cli/cubaplugin/templates/entity` to directory `~/.haulmont/cli/template/entity`.
+Than, in that directory create file `template.xml`. Fill it with template.xml example from section 2.
+
+In terminal, go to your CUBA Platform project. Launch CLI.
+
+To generate artifact with your template, use command `template teplateName`. For our case, the templateName will be `entity`.
+
