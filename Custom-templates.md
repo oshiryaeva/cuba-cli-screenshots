@@ -2,9 +2,9 @@ This section describes how to create custom templates and generate artifacts fro
 
 ### 1. Templates basics
 
-All user templates should be in the `$USER_HOME/.haulmont/cli/templates` directory. Template itself is a directory with descriptor file template.xml and files used in generation, optionally divided by CUBA Platform version in separate version directories.
+All user templates should be located in the `$USER_HOME/.haulmont/cli/templates` directory. The template itself is a directory with descriptor file template.xml and files used in generation, optionally divided by CUBA Platform version in separate version directories.
 
-So the template structure may be following:
+So, the template structure may be following:
 ```
 .
 +--template.xml
@@ -31,9 +31,9 @@ Basically, template.xml has following structure:
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <template xmlns="http://schemas.haulmont.com/cuba/cli/template.xsd"
           modelName="entity">
-    <quesitons>
-        <!-- Questions block. All answers will be stored to the CliContext and will be available to 
-             Apache Velocity by ${modelName.questionName}.-->
+    <questions>
+        <!-- Questions block. All answers will be stored to the CliContext
+            and will be available to Apache Velocity by ${modelName.questionName}.-->
         <plain name="name" caption="Entity Name"/>
         <plain name="packageName" caption="Package Name"/>
         <options name="entityType" caption="Entity type">
@@ -41,16 +41,16 @@ Basically, template.xml has following structure:
             <option>Persistent embedded</option>
             <option>Not persistent</option>
         </options>
-    </quesitons>
+    </questions>
     <operations>
         <!-- Template processing block. Operations may be of two types: transform and copy.
 
-             Transform operations indicates, that part of template, specified in 'src' attribute 
-             should be processed by Apache Velocity, and result stored to 'dst' directory. Absence of
-             dst attribute means, that result should be stored at project root.
+             Transform operations indicate that the part of the template, specified in the 'src'
+             attribute, should be processed by Apache Velocity, and result stored in 'dst' directory.
+             Absence of the 'dst' attribute means that result should be stored at project root.
 
-             Copy operations does the same, without processing by template engine. It may be necessary for
-             such things as images, or other resources, that doesn't need to be processed by template 
+             Copy operations do the same, without processing by the template engine. It may be necessary
+             for such things as images or other resources that don't need to be processed by the template
              engine and may be accidentally corrupted by it.-->
         <transform src="modules"/>
     </operations>
@@ -59,11 +59,10 @@ Basically, template.xml has following structure:
 
 ### 3. Template example
 
-Lets create out own template.
-For brevity, simply copy content of `cuba-cli/src/main/resources/com/haulmont/cuba/cli/cubaplugin/templates/entity` to directory `~/.haulmont/cli/template/entity`.
-Than, in that directory create file `template.xml`. Fill it with template.xml example from section 2.
+Let's create our own template.
+For brevity, simply copy the content of `cuba-cli/src/main/resources/com/haulmont/cuba/cli/cubaplugin/templates/entity` to directory `~/.haulmont/cli/template/entity`.
+Then, in that directory create a file `template.xml`. Fill it with template.xml example from section 2.
 
 In terminal, go to your CUBA Platform project. Launch CLI.
 
-To generate artifact with your template, use command `template teplateName`. For our case, the templateName will be `entity`.
-
+To generate an artifact with your template, use command `template teplateName`. For our case, the templateName will be `entity`.

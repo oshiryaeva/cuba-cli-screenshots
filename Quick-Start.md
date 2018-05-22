@@ -8,19 +8,19 @@ CUBA CLI is a tool for CUBA Platform projects scaffolding. CLI can work in two m
 
 ### 2. Creating a project
 
-1. Create directory for future project, for example `sales`, and navigate to it in a terminal.
+1. Create a directory for the future project, for example `sales`, and navigate to it in a terminal.
 2. Start CUBA CLI.
-2. Input command `create-app`. You can use tab auto completion.
-3. CLI will ask you questions about project. If question implies default answer, you can press enter to accept it. You will be asked following questions:
-* **Project name** – project name.
+2. Input command `create-app`. You can use tab auto-completion.
+3. CLI will ask you questions about the project. If a question implies default answer, you can press enter to accept it. You will be asked the following questions:
+* **Project name** – the project name.
 * **Project namespace** – the namespace which will be used as a prefix for entity names and database tables. The namespace can consist of Latin letters only and should be as short as possible.
-* **Platform version** – he platform version used in the project. The platform artifacts will be automatically downloaded from the repository on project build. Choose `6.8.5`.
+* **Platform version** – the platform version used in the project. The platform artifacts will be automatically downloaded from the repository on project build. Choose `6.8.5`.
 * **Root package** – the root package of Java classes.
-* **Database** – the sql database to use. Choose `HSQLDB`.
-4. Empty project will be created in the current directory.
+* **Database** – the SQL database to use. Choose `HSQLDB`.
+4. The empty project will be created in the current directory.
 5. Close CLI or open new terminal window. Run `./gradlew assemble`
-6. Run `./gradlew startDb` to start local HyperSQL server.
-7. Run `./gradlew createDb` to create database.
+6. Run `./gradlew startDb` to start the local HyperSQL server.
+7. Run `./gradlew createDb` to create a database.
 8. Run `./gradlew setupTomcat deploy start`.
 9. In your browser go to http://localhost:8080/app
 
@@ -35,14 +35,14 @@ The username and password are admin / admin.
 
 ### 4. Creating entities
 
-1. In the terminal navigate to project directory.
+1. In terminal navigate to project directory.
 2. Start CUBA CLI.
-3. Enter `entity`. You will be asked following questions:
+3. Enter `entity`. You will be asked the following questions:
 * **Entity name** – entity class name. Enter `Customer`.
 * **Package name** – entity class package name. Accept default.
-* **Entity type** – entity may be Persistent, Persistent embedded or Not Persistent. Choose Persistent, to make entity able to be saved in database.
-5. Let's add some fields. Open created class in your IDE.
-Add following field and methods:
+* **Entity type** – entity may be Persistent, Persistent embedded or Not Persistent. Choose Persistent to make the entity able to be saved in the database.
+5. Let's add some fields. Open the created class in your IDE.
+Add the following field and methods:
 ```java
 @Column(name = "NAME")
 protected String name;
@@ -55,8 +55,8 @@ public String getName() {
     return name;
 }
 ```
-6. Now let's add sql scripts for create entity table.
-Create file `modules/core/db/init/hsql/10.create-db.sql` with content
+6. Now let's add SQL scripts to create the entity table.
+Create a file `modules/core/db/init/hsql/10.create-db.sql` with the content
 ```sql
 -- begin SALES_CUSTOMER
 create table SALES_CUSTOMER (
@@ -75,7 +75,7 @@ create table SALES_CUSTOMER (
 )^
 -- end SALES_CUSTOMER
 ```
-Also create file with name `modules/core/db/update/hsql/{yy}/{yymmdd}-createCustomer.sql` with the same content.
+Also, create a file with name `modules/core/db/update/hsql/{yy}/{yymmdd}-createCustomer.sql` with the same content.
 You can read more about create and update scripts on [official documentation](https://doc.cuba-platform.com/manual-6.9/db_scripts.html).
 
-7. Run `./gradlew updateDb` to create table for `Customer` entity.
+7. Run `./gradlew updateDb` to create the table for the `Customer` entity.
