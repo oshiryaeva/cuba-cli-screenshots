@@ -60,7 +60,7 @@ Basically, template.xml has following structure:
 ### 3. Template example
 
 Let's create our own template.
-For brevity, simply copy the content of `cuba-cli/src/main/resources/com/haulmont/cuba/cli/cubaplugin/templates/entity` to directory `~/.haulmont/cli/templates/entity`.
+For brevity, simply copy the file structure and the content of `cuba-cli/src/main/resources/com/haulmont/cuba/cli/cubaplugin/templates/entity` to directory `~/.haulmont/cli/templates/entity`.
 Then, in that directory create a file `template.xml`. Fill it with template.xml example from section 2.
 
 In terminal, go to your CUBA Platform project. Launch CLI.
