@@ -2,7 +2,7 @@ This section describes how to create custom templates and generate artifacts fro
 
 ### 1. Templates basics
 
-All user templates should be located in the `$USER_HOME/.haulmont/cli/templates` directory. The template itself is a directory with descriptor file template.xml and files used in generation, optionally divided by CUBA Platform version in separate version directories.
+All user templates should be located in the `$USER_HOME/.haulmont/cli/templates` directory. The template itself is a directory with descriptor file `template.xml` and files used in generation, optionally divided by CUBA Platform version in separate version directories.
 
 So, the template structure may be following:
 ```
@@ -61,8 +61,8 @@ Basically, template.xml has following structure:
 
 Let's create our own template.
 For brevity, simply copy the file structure and the content of `cuba-cli/src/main/resources/com/haulmont/cuba/cli/cubaplugin/templates/entity` to directory `~/.haulmont/cli/templates/entity`.
-Then, in that directory create a file `template.xml`. Fill it with template.xml example from section 2.
+Then, in that directory create a file `template.xml`. Fill it with `template.xml` example from section 2.
 
 In terminal, go to your CUBA Platform project. Launch CLI.
 
-To generate an artifact with your template, use command `template teplateName`. For our case, the templateName will be `entity`.
+To generate an artifact with your template, use command `template teplateName`. For our case, the `templateName` will be `entity`.
