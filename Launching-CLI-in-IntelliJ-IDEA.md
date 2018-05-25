@@ -1,7 +1,7 @@
 Sometimes some problems may appear during launching CLI in IntelliJ IDEA with resources resolving. So, we introduce this guide.
 
 1. Clone CUBA CLI project to your workspace.
-2. In Idea choose File -> Open, specify cloned project build.gradle file. Click `Open as Project`, `OK`.
+2. In Idea choose File -> Open, specify cloned project `build.gradle` file. Click `Open as Project`, `OK`.
 3. Navigate to `src/main/kotlin/com/haulmont/cuba/cli/EntryPoint.kt`
 4. Right click on file, choose `Create 'com.haulmont.cuba.cli.EntryPointKt' run configuration`.
 5. Open created configuration.
