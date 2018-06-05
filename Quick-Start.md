@@ -8,21 +8,20 @@ CUBA CLI is a tool for CUBA Platform projects scaffolding. CLI can work in two m
 
 ### 2. Creating a project
 
-1. Create a directory for the future project, for example `sales`, and navigate to it in a terminal.
-2. Start CUBA CLI.
+1. Open a terminal and start CUBA CLI.
  ![Start CUBA CLI](https://github.com/cuba-platform/cuba-cli/blob/master/screenshots/1_cuba-cli.png)
-3. Input command `create-app`. You can use tab auto-completion.
+2. Input command `create-app`. You can use tab auto-completion.
  ![Start CUBA CLI](https://github.com/cuba-platform/cuba-cli/blob/master/screenshots/2_cuba-cli.png)
-4. CLI will ask you questions about the project. If a question implies default answer, you can press enter to accept it. You will be asked the following questions:
-* **Project name** – the project name.
+3. CLI will ask you questions about the project. If a question implies default answer, you can press enter to accept it. You will be asked the following questions:
+* **Project name** – the project name. For sample projects CLI generates random names that can be selected by default.
 * **Project namespace** – the namespace which will be used as a prefix for entity names and database tables. The namespace can consist of Latin letters only and should be as short as possible.
-* **Platform version** – the platform version used in the project. The platform artifacts will be automatically downloaded from the repository on project build. Choose `6.8.5`.
+* **Platform version** – the platform version used in the project. The platform artifacts will be automatically downloaded from the repository on project build. Choose `6.9.0`.
 * **Root package** – the root package of Java classes.
 * **Database** – the SQL database to use. Choose `HSQLDB`.
  ![Start CUBA CLI](https://github.com/cuba-platform/cuba-cli/blob/master/screenshots/3_create-app.png)
-4. The empty project will be created in the current directory.
+4. The empty project will be created in a new folder in the current directory.
  ![Start CUBA CLI](https://github.com/cuba-platform/cuba-cli/blob/master/screenshots/4_create-app.png)
-5. Close CLI or open new terminal window. Run `./gradlew assemble`
+5. Close CLI or open new terminal window and navigate to . Run `./gradlew assemble`
  ![Start CUBA CLI](https://github.com/cuba-platform/cuba-cli/blob/master/screenshots/5_gradlew-assemble.png)
  ![Start CUBA CLI](https://github.com/cuba-platform/cuba-cli/blob/master/screenshots/6_gradlew-assemble.png)
 6. Run `./gradlew startDb` to start the local HyperSQL server.
@@ -66,27 +65,26 @@ public String getName() {
     return name;
 }
 ```
-6. Now let's add SQL scripts to create the entity table.
-Create a file `modules/core/db/init/hsql/10.create-db.sql` with the content
+6. Now let's add the new column to the SQL update script.
+Open the generated `{yymmdd}-createCustomer.sql` update script in the `modules/core/db/update/hsql/{yy}/` folder and add the `NAME` column to it:
 ```sql
 -- begin SALES_CUSTOMER
-create table SALES_CUSTOMER (
+create table DEMO_CUSTOMER (
     ID varchar(36) not null,
-    VERSION integer not null,
     CREATE_TS timestamp,
     CREATED_BY varchar(50),
+    VERSION integer,
     UPDATE_TS timestamp,
     UPDATED_BY varchar(50),
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
-    --
+    --  add your columns here
     NAME varchar(255),
     --
     primary key (ID)
 )^
 -- end SALES_CUSTOMER
 ```
-Also, create a file with name `modules/core/db/update/hsql/{yy}/{yymmdd}-createCustomer.sql` with the same content.
 You can read more about create and update scripts on [official documentation](https://doc.cuba-platform.com/manual-6.9/db_scripts.html).
 
 7. Run `./gradlew updateDb` to create the table for the `Customer` entity.
